@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: note_service/docker/Dockerfile
+    container_name: note_service_app
+    ports:
+      - "8080:8000"  # Прокидываем порт FastAPI
+    depends_on:
+      note_service_mongodb:
+        condition: service_healthy
+    environment:
+      - MONGO_URL=mongodb://note_service_mongodb:27017
+      - DATABASE_NAME=note_service_db
+
+  note_service_mongodb:
+    image: mongo:latest
+    container_name: note_service_mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.runCommand('ping').ok"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  mongo_data:

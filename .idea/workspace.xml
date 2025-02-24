@@ -1,11 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7796f60-cc36-45a2-8b17-bea4e110d461" name="Changes" comment="" />
+    <list default="true" id="e7796f60-cc36-45a2-8b17-bea4e110d461" name="Changes" comment="First commit">
+      <change afterPath="$PROJECT_DIR$/.idea/HexaMicroservices.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/note_service/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/note_service/app/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/note_service/app/application/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/note_service/app/application/note_manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/note_service/app/core/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/note_service/app/core/config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/note_service/app/core/container.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/note_service/app/core/dependencies.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/note_service/app/core/metrics.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/note_service/app/domain/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/note_service/app/domain/interfaces.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/note_service/app/domain/models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/note_service/app/domain/models/note.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/note_service/app/domain/models/user.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/note_service/app/infrastructure/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/note_service/app/infrastructure/db.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/note_service/app/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/note_service/app/presentation/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/note_service/app/presentation/api/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/note_service/app/presentation/api/notes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/note_service/docker/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/note_service/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/note_service/tests/test_note_manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_to_txt.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 5
@@ -18,9 +62,95 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "Python tests.Python tests for test_note_manager.test_create_note.executor": "Run",
+    "Python tests.Python tests for test_note_manager.test_get_note_not_found.executor": "Run",
+    "Python tests.Python tests for test_note_manager.test_get_note_success.executor": "Run",
+    "Python tests.Python tests for test_note_manager.test_get_notes_by_user.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/RitinaADM/PycharmProjects/HexaMicroservices",
+    "settings.editor.selected.configurable": "vcs.Git"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\RitinaADM\PycharmProjects\HexaMicroservices" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\RitinaADM\PycharmProjects\HexaMicroservices\note_service\app" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python tests.Python tests for test_note_manager.test_get_notes_by_user">
+    <configuration name="Python tests for test_note_manager.test_create_note" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="HexaMicroservices" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/note_service/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_note_manager.test_create_note&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_note_manager.test_get_note_not_found" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="HexaMicroservices" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/note_service/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_note_manager.test_get_note_not_found&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_note_manager.test_get_note_success" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="HexaMicroservices" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/note_service/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_note_manager.test_get_note_success&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_note_manager.test_get_notes_by_user" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="HexaMicroservices" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/note_service/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_note_manager.test_get_notes_by_user&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.Python tests for test_note_manager.test_get_notes_by_user" />
+        <item itemvalue="Python tests.Python tests for test_note_manager.test_get_note_not_found" />
+        <item itemvalue="Python tests.Python tests for test_note_manager.test_get_note_success" />
+        <item itemvalue="Python tests.Python tests for test_note_manager.test_create_note" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -38,5 +168,20 @@
       <updated>1740395462158</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="First commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="First commit" />
   </component>
 </project>
