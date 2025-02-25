@@ -8,9 +8,7 @@ from user_service.app.core.metrics import REQUEST_COUNT, REQUEST_LATENCY
 from datetime import timedelta
 from time import time
 
-
 router = APIRouter(prefix="/api/auth", tags=["auth"])
-
 
 @router.post("/register", response_model=UserView)
 async def register_user(
@@ -20,18 +18,12 @@ async def register_user(
     start_time = time()
     REQUEST_COUNT.labels(method="POST", endpoint="/api/auth/register").inc()
     try:
-        # Удаляем role из user, если оно было передано
-        user_dict = user.dict(exclude_unset=True)
-        if "role" in user_dict:
-            del user_dict["role"]
-        user_create = UserCreate(**user_dict, role=UserRole.USER)  # Всегда user
-        created_user = await manager.register_user(user_create)
+        created_user = await manager.register_user(user)  # Роль уже фиксирована внутри register_user как USER
         return created_user
     finally:
         REQUEST_LATENCY.labels(endpoint="/api/auth/register").observe(time() - start_time)
 
 
-# Логин
 @router.post("/login", response_model=dict)
 async def login(
     form_data: OAuth2PasswordRequestForm = Depends(),
@@ -53,4 +45,3 @@ async def login(
     )
     REQUEST_LATENCY.labels(endpoint="/api/auth/login").observe(time() - start_time)
     return {"access_token": access_token, "token_type": "bearer"}
-

@@ -14,7 +14,7 @@ services:
       rabbitmq:
         condition: service_healthy
     env_file:
-      - user_service/.env  # Обновленный путь
+      - user_service/.env
 
   note_service_app:
     build:
@@ -26,8 +26,10 @@ services:
     depends_on:
       note_service_mongodb:
         condition: service_healthy
+      rabbitmq:  # Добавляем зависимость
+        condition: service_healthy
     env_file:
-      - note_service/.env  # Обновленный путь
+      - note_service/.env
 
   user_service_mongodb:
     image: mongo:latest

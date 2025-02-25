@@ -1,8 +1,9 @@
 import json
 import logging
+import asyncio
 from aio_pika import connect_robust, Message
-from user_service.app.domain.interfaces import MessageBroker
-from user_service.app.core.config import settings
+from note_service.app.domain.interfaces import MessageBroker
+from note_service.app.core.config import settings
 
 logger = logging.getLogger(__name__)
 
@@ -10,12 +11,23 @@ class RabbitMQBroker(MessageBroker):
     def __init__(self):
         self.connection = None
         self.channel = None
+        self.url = getattr(settings, "rabbitmq_url", "amqp://guest:guest@rabbitmq:5672/")  # Используем settings или default
 
-    async def connect(self):
-        if not self.connection or self.connection.is_closed:
-            self.connection = await connect_robust(settings.rabbitmq_url)
-            self.channel = await self.connection.channel()
-            logger.info("Connected to RabbitMQ")
+    async def connect(self, retries=5, delay=5):
+        for attempt in range(retries):
+            try:
+                if not self.connection or self.connection.is_closed:
+                    self.connection = await connect_robust(self.url)
+                    self.channel = await self.connection.channel()
+                    logger.info("Connected to RabbitMQ")
+                    return
+            except Exception as e:
+                logger.warning(f"Failed to connect to RabbitMQ (attempt {attempt + 1}/{retries}): {e}")
+                if attempt < retries - 1:
+                    await asyncio.sleep(delay)
+                else:
+                    logger.error("Max retries reached. Could not connect to RabbitMQ.")
+                    raise
 
     async def publish(self, queue: str, message: dict) -> None:
         await self.connect()

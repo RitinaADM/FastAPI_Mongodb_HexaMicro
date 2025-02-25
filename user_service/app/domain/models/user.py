@@ -28,10 +28,10 @@ class UserCreate(BaseModel):
     username: str
     email: EmailStr
     password: str
-    role: Optional[UserRole] = UserRole.USER  # Опционально, по умолчанию user
+    # Поле role удалено, чтобы исключить его передачу при регистрации
 
 class UserUpdate(BaseModel):
     username: Optional[str] = None
     email: Optional[EmailStr] = None
     password: Optional[str] = None
-    role: Optional[UserRole] = None  # Обновление роли
+    role: Optional[UserRole] = None  # Обновление роли остается для админов

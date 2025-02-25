@@ -29,5 +29,11 @@ class UserRepository(ABC):
 
 class MessageBroker(ABC):
     @abstractmethod
-    def consume(self, queue: str, callback):
+    async def publish(self, queue: str, message: dict) -> None:
+        """Публикует сообщение в очередь."""
+        pass
+
+    @abstractmethod
+    async def consume(self, queue: str, callback) -> None:
+        """Подписывается на очередь и вызывает callback для каждого сообщения."""
         pass

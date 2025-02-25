@@ -9,8 +9,8 @@ class Settings(BaseSettings):
     environment: str
     jwt_secret_key: str
     jwt_algorithm: str
+    rabbitmq_url: str = "amqp://guest:guest@rabbitmq:5672/"  # Добавляем по умолчанию
     sentry_dsn: Optional[str] = None
-
     auth_token_url: str = "http://localhost:8001/api/auth/login"
 
     model_config = SettingsConfigDict(
