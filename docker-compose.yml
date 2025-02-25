@@ -1,28 +1,42 @@
 version: "3.8"
 
 services:
-  app:
+  user_service_app:
+    build:
+      context: .
+      dockerfile: user_service/docker/Dockerfile
+    container_name: user_service_app
+    ports:
+      - "8001:8000"
+    depends_on:
+      user_service_mongodb:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    env_file:
+      - user_service/.env  # Обновленный путь
+
+  note_service_app:
     build:
       context: .
       dockerfile: note_service/docker/Dockerfile
     container_name: note_service_app
     ports:
-      - "8080:8000"  # Прокидываем порт FastAPI
+      - "8002:8000"
     depends_on:
       note_service_mongodb:
         condition: service_healthy
-    environment:
-      - MONGO_URL=mongodb://note_service_mongodb:27017
-      - DATABASE_NAME=note_service_db
+    env_file:
+      - note_service/.env  # Обновленный путь
 
-  note_service_mongodb:
+  user_service_mongodb:
     image: mongo:latest
-    container_name: note_service_mongodb
+    container_name: user_service_mongodb
     restart: always
     ports:
-      - "27017:27017"
+      - "27001:27017"
     volumes:
-      - mongo_data:/data/db
+      - mongo_data_user:/data/db
     healthcheck:
       test: ["CMD", "mongosh", "--eval", "db.runCommand('ping').ok"]
       interval: 5s
@@ -30,5 +44,37 @@ services:
       retries: 5
       start_period: 10s
 
+  note_service_mongodb:
+    image: mongo:latest
+    container_name: note_service_mongodb
+    restart: always
+    ports:
+      - "27002:27017"
+    volumes:
+      - mongo_data_note:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.runCommand('ping').ok"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
 volumes:
-  mongo_data:
+  mongo_data_user:
+  mongo_data_note:
+  rabbitmq_data:

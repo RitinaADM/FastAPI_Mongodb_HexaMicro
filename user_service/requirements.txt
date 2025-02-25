@@ -1,0 +1,16 @@
+fastapi==0.112.0
+uvicorn==0.30.5
+motor>=3.6.0
+pydantic==2.8.2
+pydantic[email]==2.8.2
+pydantic-settings==2.4.0
+pymongo>=4.0
+prometheus-client==0.20.0
+sentry-sdk==2.13.0
+aio-pika==9.0.0
+pytest==8.3.2
+pytest-asyncio==0.23.8
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+bcrypt==4.0.1
+python-multipart==0.0.9  # Добавлено для обработки form-data

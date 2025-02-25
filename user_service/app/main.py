@@ -1,11 +1,14 @@
 import logging
 from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from contextlib import asynccontextmanager
-from note_service.app.core.container import Container
-from note_service.app.core.config import settings
-from note_service.app.presentation.api.notes import router as notes_router
-from note_service import __version__
+from user_service.app.core.container import Container
+from user_service.app.core.config import settings
+from user_service.app.presentation.api.users import router as users_router
+from user_service.app.presentation.api.auth import router as auth_router
+
+from user_service import __version__
 
 # Настройка логирования
 logging.basicConfig(
@@ -15,9 +18,17 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 app = FastAPI(
-    title="Note Service",
+    title="User Service",
     version=__version__,
-    description="A simple note management microservice built with hexagonal architecture."
+    description="A user management and authentication microservice."
+)
+# Добавляем middleware для CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:8002"],  # Разрешаем все origins (или укажите конкретные, например, ["http://localhost:8002"])
+    allow_credentials=True,
+    allow_methods=["*"],  # Разрешаем все методы (GET, POST, OPTIONS и т.д.)
+    allow_headers=["*"],  # Разрешаем все заголовки
 )
 
 @app.exception_handler(Exception)
@@ -28,20 +39,28 @@ async def global_exception_handler(request: Request, exc: Exception):
         content={"detail": "Internal server error"},
     )
 
+@app.middleware("http")
+async def log_requests(request: Request, call_next):
+    logger.info(f"Request: {request.method} {request.url}")
+    response = await call_next(request)
+    return response
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Initializing application", extra={"context": "lifespan=start"})
     container = Container(settings)
     app.state.container = container
-    app.state.note_manager = await container.get_note_manager()
-    await app.state.note_manager.repository.init_indexes()
+    app.state.user_manager = await container.get_user_manager()
+    await app.state.user_manager.repository.init_indexes()
     logger.info("Application initialized", extra={"context": "lifespan=ready"})
     yield
     await container.close()
     logger.info("Application shutdown", extra={"context": "lifespan=shutdown"})
 
 app.router.lifespan_context = lifespan
-app.include_router(notes_router)
+app.include_router(auth_router)
+app.include_router(users_router)
 
 if __name__ == "__main__":
     import uvicorn
